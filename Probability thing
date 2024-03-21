@@ -18,33 +18,25 @@ int main()
             if(WhatDoYouWantToFindCOIN == 1){
                 std::cout << "How many coin tosses will there be?: ";
                 std::cin >> x;
-                float a; 
-                a = 100*(pow(2,x)-1)/pow(2,x); 
-                std::cout <<"Your chance of getting at least one head is " << a << "%";
+                std::cout <<"Your chance of getting at least one head is " << 100*(pow(2,x)-1)/pow(2,x) << "%";
                 exit(0); }
             
             if(WhatDoYouWantToFindCOIN == 2){
                 std::cout << "How many coin tosses will there be?: ";
-                std::cin >> x;
-                float a; 
-                a   = 100*(pow(2,x)-1)/pow(2,x); 
-                std::cout <<"Your chance of getting at least one tails is " << a << "%";
+                std::cin >> x; 
+                std::cout <<"Your chance of getting at least one tails is " << 100*(pow(2,x)-1)/pow(2,x) << "%";
                 exit(0); }
             
             if(WhatDoYouWantToFindCOIN ==  3 ){
                 std::cout << "How many coin tosses will there be?: ";
                 std::cin >> x;
-                float a; 
-                a = 100/pow(2,x); 
-                std::cout <<"Your change of getting at only heads is " << a << "%";
+                std::cout <<"Your chance of getting only heads is " << 100/pow(2,x) << "%";
                 exit(0); }
             
             if(WhatDoYouWantToFindCOIN == 4){
                 std::cout << "How many coin tosses will there be?: ";
-                std::cin >> x;
-                float a; 
-                a = 100/pow(2,x); 
-                std::cout <<"Your change of getting at only tails is " << a << "%";
+                std::cin >> x; 
+                std::cout <<"Your change of getting only tails is " <<  100/pow(2,x) << "%";
                 exit(0); }
 
         }
@@ -65,7 +57,7 @@ int main()
         std::cin>>NumberOfRolls;
         std::cout<<" What number do you want?: ";
         std::cin>>NumberYouWant;
-        std::cout<<"the chance of getting " << NumberYouWant << " at least once is " << 100*((pow(NumberOfDiceSides-1, NumberOfRolls))/(pow(NumberOfDiceSides,NumberOfRolls)))<< "%";
+        std::cout<<"the chance of getting " << NumberYouWant << " at least once is " << 100*(1-(pow(NumberOfDiceSides-1, NumberOfRolls))/(pow(NumberOfDiceSides,NumberOfRolls)))<< "%";
         exit(0);}
         
         if(WhatDoYouWantToFindOutDICE == 2){
