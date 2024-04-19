@@ -1,2 +1,2 @@
-# SomeC-Things
+# SomeC++Things
 c++thingies
