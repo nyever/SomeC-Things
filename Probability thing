@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <cmath>
+#include <math.h>
 #include <list>
 #include <cstdio>
 int main()
@@ -52,7 +53,7 @@ int main()
         if(WhatDoYouWantToFindOutDICE == 1){
         std::cout<< "How many sides should the dice have?: "; 
         std::cin>>NumberOfDiceSides;
-        if(NumberOfDiceSides<2 or float(NumberOfDiceSides) != int(NumberOfDiceSides){std::cout<<"What, why, no?"; exit(0);}
+        if(NumberOfDiceSides<2 or float(NumberOfDiceSides) != int(NumberOfDiceSides)){std::cout<<"What, why, no?"; exit(0);}
         if(float(NumberOfDiceSides) != int(NumberOfDiceSides)){std::cout<<"lol\nno";exit(0);}
         std::cout<<"How many times do you want to roll?: "; 
         std::cin>>NumberOfRolls;
@@ -60,7 +61,7 @@ int main()
         std::cout<<"What number do you want?: ";
         std::cin>>NumberYouWant;
         if(NumberYouWant < 0 or NumberYouWant > NumberOfDiceSides or float(NumberYouWant) != int(NumberYouWant)){std::cout<<"Nup"; exit(0);}
-        std::cout<<"The chance of getting " << NumberYouWant << " at least once is " << 100*(1-(pow(NumberOfDiceSides-1, NumberOfRolls))/(pow(NumberOfDiceSides,NumberOfRolls)))<< "%";
+        std::cout<<"The chance of getting " << NumberYouWant << " at least once is " << 100*((pow(NumberOfDiceSides, NumberOfRolls)-pow(NumberOfDiceSides, -NumberOfRolls))/(pow(NumberOfDiceSides,NumberOfRolls)))<< "%";
         exit(0);}
         
         if(WhatDoYouWantToFindOutDICE == 2){
@@ -72,7 +73,9 @@ int main()
         std::cout<<"What number do you not want?: ";
         std::cin>>NumberYouDontWant;
         if(NumberYouDontWant < 0 or NumberYouDontWant > NumberOfDiceSides or float(NumberYouDontWant) != int(NumberYouDontWant)){std::cout<<"Congrats, you in fact will never get that number"; exit(0);}
-        std::cout<<"The chance of not getting " << NumberYouDontWant << " is " <<100*(pow(NumberOfDiceSides-1, NumberOfRolls))/(pow(NumberOfDiceSides,NumberOfRolls))<< "%";
+        float NumberYouDontWantResult = abs(100*(pow(NumberOfDiceSides-1, NumberOfRolls))/(pow(NumberOfDiceSides,NumberOfRolls)));
+        if(isnan(NumberYouDontWantResult) == true){std::cout<<"0%\n"; exit(0);}
+        std::cout<<"The chance of not getting " << NumberYouDontWant << " is " <<NumberYouDontWantResult<< "%";
         exit(0);}
         
         if(WhatDoYouWantToFindOutDICE == 3){
