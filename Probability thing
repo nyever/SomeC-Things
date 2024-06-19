@@ -5,90 +5,133 @@
 #include <math.h>
 #include <list>
 #include <cstdio>
+
+//Variable intialisation 
+
+
+std::string DiceOrCoin;
+
+class Variables{
+    public:
+        int WhatDoYouWantToFind;
+        float sides;
+        float rolls;
+        float NumberYouWant;
+        float NumberYouDontWant;
+        float NumberYouDontWantResult;
+        float NumberYouOnlyWant;
+    };
+    
 int main()
 {
-    std::string DiceOrCoin;
-    int x;
-     
+    Variables Dice;
+    Variables Coin;
     std::cout << "Are we flipping a coins or rolling dice?: ";
     std::getline(std::cin,DiceOrCoin);
+    
     if(DiceOrCoin == "coins" or DiceOrCoin == "Coins" or DiceOrCoin == "coin" or DiceOrCoin == "Coin"){
-            float WhatDoYouWantToFindCOIN;
+        
             std::cout << "What do you want to find? \nChance of heads(TYPE 1) \nChance of tails(TYPE 2) \nChance of only Heads(TYPE 3) \nChance of only Tails(TYPE 4) \nAnswer: ";
-            std::cin >> WhatDoYouWantToFindCOIN;
-            if(WhatDoYouWantToFindCOIN == 1){
-                std::cout << "How many coin tosses will there be?: ";
-                std::cin >> x;
-                std::cout <<"Your chance of getting at least one head is " << 100*(pow(2,x)-1)/pow(2,x) << "%";
-                exit(0); }
+            std::cin >> Coin.WhatDoYouWantToFind;
+            std::cout << "How many coin tosses will there be?: ";
+            std::cin >> Coin.rolls;
             
-            if(WhatDoYouWantToFindCOIN == 2){
-                std::cout << "How many coin tosses will there be?: ";
-                std::cin >> x; 
-                std::cout <<"Your chance of getting at least one tails is " << 100*(pow(2,x)-1)/pow(2,x) << "%";
-                exit(0); }
+            switch(Dice.WhatDoYouWantToFind){
+                case 1:
+                    std::cout <<"Your chance of getting at least one head is " << 100*(pow(2,Coin.rolls)-1)/pow(2,Coin.rolls) << "%";
+                    exit(0); 
+                
+                case 2:
+                    std::cout <<"Your chance of getting at least one tails is " << 100*(pow(2,Coin.rolls)-1)/pow(2,Coin.rolls) << "%";
+                    exit(0); 
             
-            if(WhatDoYouWantToFindCOIN ==  3 ){
-                std::cout << "How many coin tosses will there be?: ";
-                std::cin >> x;
-                std::cout <<"Your chance of getting only heads is " << 100/pow(2,x) << "%";
-                exit(0); }
+                case 3:
+                    std::cout <<"Your chance of getting only heads is " << 100/pow(2,Coin.rolls) << "%";
+                    exit(0); 
             
-            if(WhatDoYouWantToFindCOIN == 4){
-                std::cout << "How many coin tosses will there be?: ";
-                std::cin >> x; 
-                std::cout <<"Your change of getting only tails is " <<  100/pow(2,x) << "%";
-                exit(0); }
+                case 4:
+                    std::cout <<"Your change of getting only tails is " <<  100/pow(2,Coin.rolls) << "%";
+                    exit(0); 
+            }
 
         }
     if(DiceOrCoin == "dice" or DiceOrCoin == "Dice" or DiceOrCoin == "die" or DiceOrCoin == "Die") {
-        float WhatDoYouWantToFindOutDICE;
-        float NumberOfDiceSides;
-        float NumberOfRolls;
-        float NumberYouWant;
-        float NumberYouDontWant;
-        float NumberYouOnlyWant;
+        
         std::cout<< "What do you want to find out?\nChance of rolling a number at least once(TYPE 1)\nChance of not rolling a number(TYPE 2)\nChance of only rolling a number(TYPE 3)\nAnswer: ";
-        std::cin>>WhatDoYouWantToFindOutDICE;
-        if(WhatDoYouWantToFindOutDICE == 1){
+        std::cin>>Dice.WhatDoYouWantToFind;
         std::cout<< "How many sides should the dice have?: "; 
-        std::cin>>NumberOfDiceSides;
-        if(NumberOfDiceSides<2 or float(NumberOfDiceSides) != int(NumberOfDiceSides)){std::cout<<"What, why, no?"; exit(0);}
-        if(float(NumberOfDiceSides) != int(NumberOfDiceSides)){std::cout<<"lol\nno";exit(0);}
+        std::cin>>Dice.sides;
         std::cout<<"How many times do you want to roll?: "; 
-        std::cin>>NumberOfRolls;
-        if(float(NumberOfRolls) != int(NumberOfRolls)){std::cout<<"I don't think the probability overlords agree with that decision, sorry"; exit(0);}
-        std::cout<<"What number do you want?: ";
-        std::cin>>NumberYouWant;
-        if(NumberYouWant < 0 or NumberYouWant > NumberOfDiceSides or float(NumberYouWant) != int(NumberYouWant)){std::cout<<"Nup"; exit(0);}
-        std::cout<<"The chance of getting " << NumberYouWant << " at least once is " << 100*((pow(NumberOfDiceSides, NumberOfRolls)-pow(NumberOfDiceSides, -NumberOfRolls))/(pow(NumberOfDiceSides,NumberOfRolls)))<< "%";
-        exit(0);}
+        std::cin>>Dice.rolls;
         
-        if(WhatDoYouWantToFindOutDICE == 2){
-        std::cout<< "How many sides should the dice have?: "; 
-        std::cin>>NumberOfDiceSides;
-        std::cout<<"How many times do you want to roll?: "; 
-        std::cin>>NumberOfRolls;
-         if(float(NumberOfRolls) != int(NumberOfRolls)){std::cout<<"Be quiet, they are listening"; exit(0);}
-        std::cout<<"What number do you not want?: ";
-        std::cin>>NumberYouDontWant;
-        if(NumberYouDontWant < 0 or NumberYouDontWant > NumberOfDiceSides or float(NumberYouDontWant) != int(NumberYouDontWant)){std::cout<<"Congrats, you in fact will never get that number"; exit(0);}
-        float NumberYouDontWantResult = abs(100*(pow(NumberOfDiceSides-1, NumberOfRolls))/(pow(NumberOfDiceSides,NumberOfRolls)));
-        if(isnan(NumberYouDontWantResult) == true){std::cout<<"0%\n"; exit(0);}
-        std::cout<<"The chance of not getting " << NumberYouDontWant << " is " <<NumberYouDontWantResult<< "%";
-        exit(0);}
+        switch(Dice.WhatDoYouWantToFind){
+            
+            case 1:
+            
+                if(Dice.sides<2 or float(Dice.sides) != int(Dice.sides)){
+                    
+                    std::cout<<"What, why, no?"; exit(0);
+                    
+                    }
+                if(float(Dice.sides) != int(Dice.sides)){
+                    
+                    std::cout<<"lol\nno";exit(0);
+                    
+                    }
+                if(float(Dice.rolls) != int(Dice.rolls)){
+                
+                std::cout<<"I don't think the probability overlords agree with that decision, sorry"; exit(0);
+                
+                }
+                
+                std::cout<<"What number do you want?: ";
+                std::cin>>Dice.NumberYouWant;
+                
+                if(Dice.NumberYouWant < 0 or Dice.NumberYouWant > Dice.rolls or float(Dice.NumberYouWant) != int(Dice.NumberYouWant)){
+                    std::cout<<"Nup"; exit(0);
+                    
+                    }
+                
+                std::cout<<"The chance of getting " << Dice.NumberYouWant << " at least once is " << 100*((pow(Dice.sides, Dice.rolls)-pow(Dice.sides, -Dice.rolls))/(pow(Dice.sides,Dice.rolls)))<< "%";
+                exit(0);
         
-        if(WhatDoYouWantToFindOutDICE == 3){
-        std::cout<< "How many sides should the dice have?: "; 
-        std::cin>>NumberOfDiceSides;
-        std::cout<<"How many times do you want to roll?: "; 
-        std::cin>>NumberOfRolls;
-        std::cout<<"What number do you only want?: ";
-        std::cin>>NumberYouOnlyWant;
-        if(NumberYouOnlyWant < 0 or NumberYouOnlyWant > NumberYouOnlyWant or float(NumberYouOnlyWant) != int(NumberYouOnlyWant)){std::cout<<"0, what where you expecting to happen?"; exit(0);}
-        std::cout<<"The chance of only getting " << NumberYouOnlyWant << " is " <<100/(pow(NumberOfDiceSides,NumberOfRolls))<< "%";
-        exit(0);}
+            case 2:
+            
+                if(float(Dice.rolls) != int(Dice.rolls)){
+                    std::cout<<"Be quiet, they are listening"; 
+                    exit(0);
+                    }
+            
+                std::cout<<"What number do you not want?: ";
+                std::cin>>Dice.NumberYouDontWant;
+             
+                if(Dice.NumberYouDontWant < 0 or Dice.NumberYouDontWant > Dice.sides or float(Dice.NumberYouDontWant) != int(Dice.NumberYouDontWant)){
+                    std::cout<<"Congrats, you in fact will never get that number";
+                    exit(0);
+                    }
+                Dice.NumberYouDontWantResult = abs(100*(pow(Dice.sides-1, Dice.rolls))/(pow(Dice.sides,Dice.rolls)));
+            
+                if(isnan(Dice.NumberYouDontWantResult) == true){
+                    std::cout<<"0%\n";
+                    exit(0);
+                    }
+                std::cout<<"The chance of not getting " << Dice.NumberYouDontWant << " is " <<Dice.NumberYouDontWantResult<< "%";
+                exit(0);
+        
+            case 3:
+            
+                std::cout<<"What number do you only want?: ";
+                std::cin>>Dice.NumberYouOnlyWant;
+            
+                if(Dice.NumberYouOnlyWant <= 0 or Dice.NumberYouOnlyWant > Dice.sides or float(Dice.NumberYouOnlyWant) != int(Dice.NumberYouOnlyWant)){
+                std::cout<<"0, what where you expecting to happen?"; 
+                exit(0);
+                }
+                std::cout<<"The chance of only getting " << Dice.NumberYouOnlyWant << " is " <<100/(pow(Dice.sides,Dice.rolls))<< "%";
+                exit(0);
         }
         
+    return 0;
+}
     return 0;
 }
